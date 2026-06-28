@@ -1,0 +1,245 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-oswald);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Industrial brand tokens */
+  --color-forge: var(--forge);
+  --color-steel: var(--steel);
+  --color-silver: var(--silver);
+  --color-ink: var(--ink);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Industrial Hardcore palette — permanently dark */
+  --background: #000000;
+  --foreground: #c0c0c0;
+  --card: #1a1a1a;
+  --card-foreground: #e8e8e8;
+  --popover: #1a1a1a;
+  --popover-foreground: #e8e8e8;
+  --primary: #ff5e00;
+  --primary-foreground: #000000;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #c0c0c0;
+  --muted: #161616;
+  --muted-foreground: #8a8a8a;
+  --accent: #ff5e00;
+  --accent-foreground: #000000;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --border: rgba(192, 192, 192, 0.14);
+  --input: rgba(192, 192, 192, 0.2);
+  --ring: #ff5e00;
+
+  --forge: #ff5e00;
+  --steel: #1a1a1a;
+  --silver: #c0c0c0;
+  --ink: #000000;
+
+  --chart-1: #ff5e00;
+  --chart-2: #c0c0c0;
+  --chart-3: #8a8a8a;
+  --chart-4: #4a4a4a;
+  --chart-5: #2a2a2a;
+
+  --sidebar: #0d0d0d;
+  --sidebar-foreground: #c0c0c0;
+  --sidebar-primary: #ff5e00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #e8e8e8;
+  --sidebar-border: rgba(192, 192, 192, 0.14);
+  --sidebar-ring: #ff5e00;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  ::selection {
+    background: var(--forge);
+    color: #000;
+  }
+}
+
+/* ---------- Industrial grain texture overlay ---------- */
+.grain-overlay {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: grain-drift 8s steps(6) infinite;
+  will-change: transform;
+}
+@keyframes grain-drift {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-5%, 3%); }
+  40% { transform: translate(3%, -4%); }
+  60% { transform: translate(-3%, 5%); }
+  80% { transform: translate(4%, -2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Diagonal hazard stripe accent (used in bars / dividers) */
+.hazard-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--forge) 0,
+    var(--forge) 14px,
+    #000 14px,
+    #000 28px
+  );
+}
+
+/* Brushed metal surface */
+.brushed-metal {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.04) 100%),
+    linear-gradient(180deg, #232323 0%, #161616 100%);
+}
+
+/* Soft neon-orange pulse for sticky CTA */
+@keyframes pulse-forge {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 94, 0, 0.55); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 94, 0, 0); }
+}
+.pulse-forge {
+  animation: pulse-forge 2.4s ease-out infinite;
+}
+
+/* Slow zoom for hero imagery */
+@keyframes slow-zoom {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.18); }
+}
+.animate-slow-zoom {
+  animation: slow-zoom 18s ease-out forwards alternate infinite;
+}
+
+/* Marquee for trust ticker */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+/* 3D flip helpers (registered as utilities so variants like group-hover: work) */
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+@utility backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* ---------- Custom scrollbar (dark industrial) ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a #000;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: #000;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border: 2px solid #000;
+  border-radius: 0;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--forge);
+}
+
+/* Utility: industrial section label */
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--forge);
+}
+
+/* Hide scrollbar utility (carousel) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
