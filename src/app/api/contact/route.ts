@@ -18,11 +18,20 @@ export async function POST(request: Request) {
     const errors: Record<string, string> = {};
     if (!name || String(name).trim().length < 2)
       errors.name = "Name is required.";
-    // Phone must contain at least 10 digits (US-style). Strip all
-    // non-digits first, then count — same rule as the client form.
-    const phoneDigits = String(phone ?? "").replace(/[^0-9]/g, "");
-    if (phoneDigits.length < 10)
-      errors.phone = "A valid 10-digit phone number is required.";
+    // Real phone number: 7-15 digits, may include + - ( ) . spaces,
+    // and an optional "x"/"ext" extension. Rejects pure letters and
+    // strings with random words. Same rule as the client form.
+    const phoneStr = String(phone ?? "").trim();
+    const phoneDigits = phoneStr.replace(/[^0-9]/g, "");
+    const phoneCharsOk = /^[+]?[\d\s().\-]+(?:\s*(?:x|ext|#)\s*\d+)?$/i.test(
+      phoneStr,
+    );
+    if (
+      phoneDigits.length < 7 ||
+      phoneDigits.length > 15 ||
+      !phoneCharsOk
+    )
+      errors.phone = "A valid phone number is required.";
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email)))
       errors.email = "A valid email is required.";
     if (!projectType || !PROJECT_TYPES.includes(projectType))
