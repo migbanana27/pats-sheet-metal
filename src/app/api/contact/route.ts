@@ -18,8 +18,11 @@ export async function POST(request: Request) {
     const errors: Record<string, string> = {};
     if (!name || String(name).trim().length < 2)
       errors.name = "Name is required.";
-    if (!phone || String(phone).trim().length < 7)
-      errors.phone = "A valid phone number is required.";
+    // Phone must contain at least 10 digits (US-style). Strip all
+    // non-digits first, then count — same rule as the client form.
+    const phoneDigits = String(phone ?? "").replace(/[^0-9]/g, "");
+    if (phoneDigits.length < 10)
+      errors.phone = "A valid 10-digit phone number is required.";
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email)))
       errors.email = "A valid email is required.";
     if (!projectType || !PROJECT_TYPES.includes(projectType))

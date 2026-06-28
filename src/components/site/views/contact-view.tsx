@@ -228,8 +228,12 @@ function MultiStepForm() {
     if (s === 1) {
       if (!form.name.trim() || form.name.trim().length < 2)
         e.name = "Enter your name.";
-      if (!form.phone.trim() || form.phone.trim().length < 7)
-        e.phone = "Enter a valid phone.";
+      // Phone must contain at least 10 digits (US-style). Accepts
+      // (512) 555-0199, 512-555-0199, +1 512.555.0199, 5125550199, etc.
+      // Rejects pure-letter strings like "abcdefg".
+      const phoneDigits = form.phone.replace(/[^0-9]/g, "");
+      if (phoneDigits.length < 10)
+        e.phone = "Enter a valid 10-digit phone number.";
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
         e.email = "Enter a valid email.";
       if (!form.projectType) e.projectType = "Pick a service.";
