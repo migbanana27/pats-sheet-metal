@@ -23,7 +23,7 @@ export function ReviewsView() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <p className="eyebrow mb-4 flex items-center gap-3">
-              <span className="h-px w-10 bg-forge" /> Our Team
+              <span className="h-px w-10 bg-forge" /> Reviews
             </p>
             <h1 className="max-w-4xl font-display text-5xl font-bold uppercase leading-[0.92] text-foreground sm:text-7xl">
               The Verdict is <span className="text-forge">In</span>.

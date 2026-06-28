@@ -32,6 +32,7 @@ function parseHash(): { view: ViewId; service: ServiceId } {
     "gallery",
     "areas",
     "reviews",
+    "team",
     "faq",
     "contact",
   ];

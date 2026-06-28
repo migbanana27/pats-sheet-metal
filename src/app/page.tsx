@@ -13,6 +13,7 @@ import { ServicesView } from "@/components/site/views/services-view";
 import { GalleryView } from "@/components/site/views/gallery-view";
 import { ServiceAreasView } from "@/components/site/views/service-areas-view";
 import { ReviewsView } from "@/components/site/views/reviews-view";
+import { TeamView } from "@/components/site/views/team-view";
 import { FaqView } from "@/components/site/views/faq-view";
 import { ContactView } from "@/components/site/views/contact-view";
 
@@ -31,6 +32,8 @@ function ViewRouter() {
         return <ServiceAreasView />;
       case "reviews":
         return <ReviewsView />;
+      case "team":
+        return <TeamView />;
       case "faq":
         return <FaqView />;
       case "contact":

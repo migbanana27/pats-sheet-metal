@@ -7,6 +7,7 @@ export type ViewId =
   | "gallery"
   | "areas"
   | "reviews"
+  | "team"
   | "faq"
   | "contact";
 
@@ -31,7 +32,8 @@ export const NAV_ITEMS: { id: ViewId; label: string }[] = [
   { id: "services", label: "Services" },
   { id: "gallery", label: "The Anvil" },
   { id: "areas", label: "Service Areas" },
-  { id: "reviews", label: "Our Team" },
+  { id: "reviews", label: "Reviews" },
+  { id: "team", label: "Our Team" },
   { id: "faq", label: "FAQ" },
   { id: "contact", label: "Get a Quote" },
 ];
