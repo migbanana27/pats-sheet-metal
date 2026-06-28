@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Contractor's Guide to Spec-Perfect Ductwork</title>
+<style>
+  @page { size: 800px 1130px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 800px;
+    background: #000000;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #c0c0c0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .poster {
+    width: 800px;
+    min-height: 1130px;
+    position: relative;
+    background:
+      linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+    padding: 56px 56px 48px;
+    overflow: hidden;
+  }
+  /* Subtle hazard stripe top */
+  .hazard {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(-45deg, #FF5E00 0, #FF5E00 12px, #000 12px, #000 24px);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    background: #FF5E00;
+    color: #000;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+  }
+  .brand-text { color: #fff; font-weight: 700; font-size: 17px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .brand-sub { color: #8a8a8a; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; }
+
+  .eyebrow {
+    color: #FF5E00;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.02;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1 .accent { color: #FF5E00; }
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #9a9a9a;
+    margin-bottom: 30px;
+    max-width: 620px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, #FF5E00 0%, rgba(192,192,192,0.15) 60%, transparent 100%);
+    margin: 0 0 28px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .section-label .dot {
+    width: 8px; height: 8px;
+    background: #FF5E00;
+    flex-shrink: 0;
+  }
+  .section-label .txt {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  ul.checklist {
+    list-style: none;
+    margin-bottom: 26px;
+  }
+  ul.checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(192,192,192,0.1);
+    font-size: 13px;
+    line-height: 1.5;
+    color: #d4d4d4;
+  }
+  ul.checklist li:last-child { border-bottom: none; }
+  .check {
+    width: 18px; height: 18px;
+    border: 2px solid #FF5E00;
+    flex-shrink: 0;
+    margin-top: 1px;
+    position: relative;
+  }
+  .check::after {
+    content: '';
+    position: absolute;
+    left: 4px; top: 1px;
+    width: 5px; height: 9px;
+    border: solid #FF5E00;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .li-bold { color: #ffffff; font-weight: 600; }
+
+  .savings-box {
+    background: linear-gradient(135deg, #FF5E00 0%, #e0540a 100%);
+    color: #000000;
+    padding: 22px 26px;
+    margin: 24px 0 28px;
+    position: relative;
+  }
+  .savings-box .label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+  .savings-box .big {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .savings-box .desc {
+    font-size: 12.5px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 26px;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 36px; left: 56px; right: 56px;
+    border-top: 1px solid rgba(192,192,192,0.15);
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10.5px;
+    color: #8a8a8a;
+  }
+  .footer .left { max-width: 420px; line-height: 1.5; }
+  .footer .left strong { color: #FF5E00; font-weight: 700; }
+  .footer .right { text-align: right; line-height: 1.6; }
+  .footer .right .phone { color: #ffffff; font-weight: 700; font-size: 13px; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="hazard"></div>
+
+  <div class="brand">
+    <div class="brand-mark">PAT'S</div>
+    <div>
+      <div class="brand-text">Pat's Sheet Metal</div>
+      <div class="brand-sub">Forged in Austin · Built to Outlast</div>
+    </div>
+  </div>
+
+  <p class="eyebrow">Free Contractor Resource</p>
+  <h1>The Contractor's Guide to <span class="accent">Spec-Perfect Ductwork</span></h1>
+  <p class="subtitle">A 1-page checklist of the most common ductwork installation mistakes — and how custom fabrication locks out leaks, balances airflow, and trims energy bills for the life of the building.</p>
+
+  <div class="divider"></div>
+
+  <div class="section-label"><span class="dot"></span><span class="txt">Common Install Mistakes to Avoid</span></div>
+  <ul class="checklist">
+    <li><span class="check"></span><span><span class="li-bold">Unsealed or taped-only seams.</span> Cloth &amp; mastic tape fail within years. Specify sealed seams and mechanically locked joints.</span></li>
+    <li><span class="check"></span><span><span class="li-bold">Sharp, unradiused bends.</span> 90° hard corners choke airflow and spike static pressure. Use long-radius elbows and gradual transitions.</span></li>
+    <li><span class="check"></span><span><span class="li-bold">Oversized or undersized ducts.</span> Wrong CFM means noise, hot/cold spots, and wasted fan energy. Size to Manual D, not rule-of-thumb.</span></li>
+    <li><span class="check"></span><span><span class="li-bold">Excess flex run.</span> Flex duct over 5′ straight, or any kinked run, cripples airflow. Keep flex short; hard-pipe the rest.</span></li>
+    <li><span class="check"></span><span><span class="li-bold">No turning vanes in mains.</span> Trunk turns without vanes create turbulence and uneven branch feeds. Always vaned.</span></li>
+    <li><span class="check"></span><span><span class="li-bold">Skipping the pressure test.</span> Never sign off without a leakage test. If you can't test it, you can't trust it.</span></li>
+  </ul>
+
+  <div class="savings-box">
+    <div class="label">The Payoff</div>
+    <div class="big">Up to 30% lower energy bills</div>
+    <div class="desc">Properly sealed, aerodynamically engineered custom ductwork can cut HVAC energy use by 20–30% — and keeps saving every month for the life of the system.</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="section-label"><span class="dot"></span><span class="txt">How Custom Fab Fixes It</span></div>
+      <ul class="checklist">
+        <li><span class="check"></span><span>Seams Pittsburgh-locked &amp; sealed — zero-leak guaranteed.</span></li>
+        <li><span class="check"></span><span>Long-radius bends engineered to your CFM.</span></li>
+        <li><span class="check"></span><span>Exact-fit transitions — no field butchery.</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="section-label"><span class="dot"></span><span class="txt">Spec It Right</span></div>
+      <ul class="checklist">
+        <li><span class="check"></span><span>Call out SMACNA seal class on the plans.</span></li>
+        <li><span class="check"></span><span>Require a leakage test at commissioning.</span></li>
+        <li><span class="check"></span><span>Send us the load calc — we size to it.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">
+      <strong>Pat's Sheet Metal</strong> — Custom HVAC ductwork, fabrication &amp; architectural metal in Austin, TX.<br>
+      Free quotes, fast turnaround, zero-leak guarantee.
+    </div>
+    <div class="right">
+      <div class="phone">(512) 555-0199</div>
+      shop@patssheetmetal.com<br>
+      Mon–Fri · 7AM–5PM
+    </div>
+  </div>
+</div>
+</body>
+</html>
